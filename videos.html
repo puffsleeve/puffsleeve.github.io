@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VIDEOS — ぱふす。</title>
+<meta name="description" content="ぱふす。のつくった動画。歌ってみたオリジナルMVと、ぱふすのきりぬき。">
+<meta name="theme-color" content="#0a0508">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://puffsleeve.github.io/videos.html">
+<meta property="og:title" content="VIDEOS — ぱふす。">
+<meta property="og:description" content="ぱふす。のつくった動画。歌ってみたオリジナルMVと、ぱふすのきりぬき。">
+<meta property="og:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
+<meta property="og:url" content="https://puffsleeve.github.io/videos.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+  .wrap { max-width: 960px; }
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+  .vcard { margin: 0; background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition: border-color .25s; }
+  .vcard:hover, .vcard:focus-within { border-color: var(--red); }
+  .yt, .vcard iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  .yt { position: relative; padding: 0; background: #000; cursor: pointer; overflow: hidden; }
+  .yt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .85; transition: opacity .25s, transform .4s; }
+  .yt:hover img, .yt:focus-visible img { opacity: 1; transform: scale(1.03); }
+  .yt:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
+  .play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; display: grid; place-items: center; color: #fff; background: rgba(255,26,46,.88); box-shadow: 0 0 24px var(--red-glow);
+    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%); transition: transform .2s; }
+  .yt:hover .play { transform: scale(1.08); }
+  .vcard figcaption { padding: 12px 14px 14px; font-size: 14px; font-weight: 700; line-height: 1.5; color: #fff; }
+  .group .lead { margin-top: -2px; }
+  .btn-yt { --c: #ff3355; } .btn-x { --c: #e7e9ea; }
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="scanline" aria-hidden="true"></div>
+<div class="corner c-tl" aria-hidden="true"></div><div class="corner c-tr" aria-hidden="true"></div><div class="corner c-bl" aria-hidden="true"></div><div class="corner c-br" aria-hidden="true"></div>
+
+<main class="wrap">
+  <a class="back" href="./">◀ ぱふす。</a>
+
+  <header class="phead">
+    <p class="pkicker">WORKS / VIDEOS</p>
+    <h1 class="ptitle">ぱふすのつくった動画</h1>
+  </header>
+
+  <section class="group" aria-labelledby="g-mv">
+    <div class="ghead"><h2 id="g-mv">MV</h2><p>#歌ってみたオリジナルMV</p></div>
+    <p class="lead">本業動画クリエイターによる副業制作です。ご相談はXまたはdiscordからおねがいします！</p>
+    <div class="btns">
+      <a class="btn btn-yt" href="https://youtube.com/playlist?list=PLefbFMC4AbudTM6s60yS2sE-AAAcNy5b2" target="_blank" rel="noopener"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>最新のプレイリスト</a>
+      <a class="btn btn-x" href="https://x.com/puffs______" target="_blank" rel="noopener"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xで相談する</a>
+    </div>
+    <div class="vgrid">
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="72PalbJtruo" aria-label="鹿ノ子・うたぴ / PPPP を再生">
+          <img src="https://i.ytimg.com/vi/72PalbJtruo/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>鹿ノ子・うたぴ / PPPP</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="mwPQ9gEoHeI" aria-label="鹿ノ子 / ミカヅキ を再生">
+          <img src="https://i.ytimg.com/vi/mwPQ9gEoHeI/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>鹿ノ子 / ミカヅキ</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="COoMCGMtpBQ" aria-label="うたぴ / pray を再生">
+          <img src="https://i.ytimg.com/vi/COoMCGMtpBQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>うたぴ / pray</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="mN63wnhBFc4" aria-label="鹿ノ子 / UNDEAD を再生">
+          <img src="https://i.ytimg.com/vi/mN63wnhBFc4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>鹿ノ子 / UNDEAD</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="rbq64aoHtt8" aria-label="やまふぁ / chukey を再生">
+          <img src="https://i.ytimg.com/vi/rbq64aoHtt8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>やまふぁ / chukey</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="TqUQRO2JZAU" aria-label="しーせん・のえる。 / 革命デュアリズム を再生">
+          <img src="https://i.ytimg.com/vi/TqUQRO2JZAU/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>しーせん・のえる。 / 革命デュアリズム</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="g-clip">
+    <div class="ghead"><h2 id="g-clip">CLIPS</h2><p>#ぱふすのきりぬき</p></div>
+    <p class="lead">人のは作りません。あそびです。たのしいね！</p>
+    <div class="vgrid">
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="EF_7nqP98dM" aria-label="優勝記念キル集（りあばろ部：VALORANTゴールド以下大会） を再生">
+          <img src="https://i.ytimg.com/vi/EF_7nqP98dM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>優勝記念キル集（りあばろ部：VALORANTゴールド以下大会）</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="tySits6BN-M" aria-label="サイファー愛シーン集 を再生">
+          <img src="https://i.ytimg.com/vi/tySits6BN-M/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>サイファー愛シーン集</figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="yt" type="button" data-id="Ux5Xwg-2o5g" aria-label="サブスク解禁記念VALORANTシーン集 を再生">
+          <img src="https://i.ytimg.com/vi/Ux5Xwg-2o5g/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <figcaption>サブスク解禁記念VALORANTシーン集</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <small>© ぱふす。 All rights reserved.</small>
+  </footer>
+</main>
+
+<script>
+  // サムネイルをタップしたときだけYouTubeを読み込む（最初の表示を軽くするため）
+  document.querySelectorAll('.yt').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.id + '?autoplay=1&rel=0';
+      f.title = btn.getAttribute('aria-label').replace(/ を再生$/, '');
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      btn.replaceWith(f);
+      f.focus();
+    });
+  });
+</script>
+</body>
+</html>

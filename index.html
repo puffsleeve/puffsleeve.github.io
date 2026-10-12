@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ぱふす。</title>
+<meta name="description" content="ゆるくふんわりぱふっとぱふすです！よく叫ぶ配信者モドキ・動画師 | TwitchとREALITYでゆるく活動中">
+<meta name="theme-color" content="#0a0508">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://puffsleeve.github.io/">
+<meta property="og:title" content="ぱふす。">
+<meta property="og:description" content="ゆるくふんわりぱふっとぱふすです！よく叫ぶ配信者モドキ・動画師 | TwitchとREALITYでゆるく活動中">
+<meta property="og:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
+<meta property="og:url" content="https://puffsleeve.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+  /* key visual */
+  .kv { position: relative; aspect-ratio: 6 / 7; max-width: 100%; overflow: hidden; border: 1px solid var(--line);
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+  .kv img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .kv .g { mix-blend-mode: screen; opacity: .75; }
+  .kv .g1 { filter: saturate(3) hue-rotate(150deg); animation: gA 5s steps(1) infinite; }
+  .kv .g2 { filter: saturate(2.4) hue-rotate(40deg); animation: gB 5s steps(1) infinite; }
+  @keyframes gA { 0%,90%,100% { clip-path: inset(0 0 100% 0); transform: none; } 91% { clip-path: inset(12% 0 60% 0); transform: translate(-7px,0); } 93% { clip-path: inset(58% 0 12% 0); transform: translate(6px,0); } 95% { clip-path: inset(30% 0 48% 0); transform: translate(-3px,0); } }
+  @keyframes gB { 0%,90%,100% { clip-path: inset(100% 0 0 0); transform: none; } 92% { clip-path: inset(40% 0 35% 0); transform: translate(7px,0); } 94% { clip-path: inset(6% 0 78% 0); transform: translate(-6px,0); } 96% { clip-path: inset(72% 0 4% 0); transform: translate(3px,0); } }
+  .kv .beam { position: absolute; left: 0; right: 0; height: 16%; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.10), transparent); animation: beam 4s linear infinite; }
+  @keyframes beam { from { top: -16%; } to { top: 100%; } }
+  .kv .fade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,5,8,.95) 0%, rgba(10,5,8,.55) 26%, transparent 50%); }
+  .kv .xbtn { position: absolute; bottom: 16px; right: 14px; z-index: 3; width: 44px; height: 44px; display: grid; place-items: center; color: #fff; background: rgba(10,5,8,.6); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background .2s, color .2s, border-color .2s;
+    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%); }
+  .kv .xbtn:hover, .kv .xbtn:focus-visible { background: #fff; color: #0a0508; border-color: #fff; }
+  .kv .rec { position: absolute; top: 14px; left: 14px; display: flex; align-items: center; gap: 8px; font-family: var(--f-en); font-size: 10px; font-weight: 700; letter-spacing: .2em; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+  .kv .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); animation: blink 1.2s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: .15; } }
+  .kv .id { position: absolute; left: 20px; right: 72px; bottom: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .name { font-family: var(--f-jp); font-weight: 900; font-size: clamp(2.2rem, 10vw, 3rem); line-height: 1; letter-spacing: .04em; color: #fff; text-shadow: 0 0 24px var(--red-glow); }
+  .name span { color: var(--red); }
+
+  .bio { font-size: 14px; line-height: 1.9; color: var(--dim); letter-spacing: .02em; animation: rise .8s .15s cubic-bezier(.2,.8,.2,1) both; }
+  .bio strong { color: var(--text); }
+  .bio a { color: var(--teal); text-decoration: none; font-weight: 700; }
+  .bio a:hover { text-decoration: underline; }
+
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="scanline" aria-hidden="true"></div>
+<div class="corner c-tl" aria-hidden="true"></div><div class="corner c-tr" aria-hidden="true"></div><div class="corner c-bl" aria-hidden="true"></div><div class="corner c-br" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="kv">
+    <img src="assets/puffs-kv.jpg" alt="ぱふす。のキービジュアル。赤い髪の女の子が編集画面の並ぶモニターの前で頬杖をついている" width="1040" height="1213" fetchpriority="high">
+    <img class="g g1" src="assets/puffs-kv.jpg" alt="" aria-hidden="true">
+    <img class="g g2" src="assets/puffs-kv.jpg" alt="" aria-hidden="true">
+    <div class="beam" aria-hidden="true"></div>
+    <div class="fade" aria-hidden="true"></div>
+    <div class="rec" aria-hidden="true"><i></i>ON AIR</div>
+    <a class="xbtn" href="https://x.com/puffs______" target="_blank" rel="noopener" aria-label="ぱふす。のX（@puffs______）を開く"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <div class="id">
+      <h1 class="name">ぱふす<span>。</span></h1>
+      <div class="tags">
+        <span class="tag t-teal">配信者</span>
+        <span class="tag t-orange">動画師</span>
+      </div>
+    </div>
+  </header>
+
+  <p class="bio">
+    ゆるくふんわりぱふっとぱふすです！よく叫ぶ配信者モドキ・動画師。<br>
+    TwitchとREALITYでゆるく活動中。<br>
+    <a href="https://x.com/hashtag/%E3%81%99%E3%83%BC%E3%81%B1%E3%83%BC%E3%81%86%E3%82%8B%E3%81%A8%E3%82%89%E3%81%B1%E3%83%BC%E3%81%A6%E3%81%83%E3%83%BC" target="_blank" rel="noopener">#すーぱーうるとらぱーてぃー</a> の主催者
+  </p>
+
+  <section class="group" aria-labelledby="g-watch">
+    <div class="ghead"><h2 id="g-watch">WATCH</h2><p>配信・動画をみる</p></div>
+    <a class="link c-tw" href="https://www.twitch.tv/puffsleeve_tv" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg></span><span class="info"><span class="plat">TWITCH</span><span class="lab" style="display:block">ぱふす選手 (puffsleeve_tv)</span></span><span class="arr">▶</span></a>
+    <a class="link c-re" href="https://reality.app/profile/f9adeb31?adj_t=8ogcewh_z9yhix5" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h10V4H7zm5 13a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span><span class="info"><span class="plat">REALITY</span><span class="lab" style="display:block">ぱふす。</span></span><span class="arr">▶</span></a>
+    <a class="link c-yt" href="https://www.youtube.com/@puffsleeve_tv" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span><span class="info"><span class="plat">YOUTUBE</span><span class="lab" style="display:block">ぱふすのおへや</span></span><span class="arr">▶</span></a>
+  </section>
+
+  <section class="group" aria-labelledby="g-made">
+    <div class="ghead"><h2 id="g-made">WORKS</h2><p>#ぱふすのつくったの</p></div>
+    <div class="pair">
+      <a class="link c-works" href="videos.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></span><span class="info"><span class="plat">VIDEOS</span><span class="lab" style="display:block">動画リスト</span></span><span class="arr">▶</span></a>
+      <a class="link c-tools" href="tools/"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></span><span class="info"><span class="plat">TOOLS</span><span class="lab" style="display:block">ぱふす。Tools</span></span><span class="arr">▶</span></a>
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="g-shop">
+    <div class="ghead"><h2 id="g-shop">SHOP</h2><p>グッズ</p></div>
+    <a class="link c-shop" href="https://suzuri.jp/puffsleeve_tv" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 4.5v9L12 21l-9-4.5v-9zm0 2.25L5.25 8.5v7l6.75 3.25 6.75-3.25v-7z"/></svg></span><span class="info"><span class="plat">SUZURI</span><span class="lab" style="display:block">グッズショップ</span></span><span class="arr">▶</span></a>
+  </section>
+
+  <section class="group" aria-labelledby="g-sns">
+    <div class="ghead"><h2 id="g-sns">FOLLOW</h2><p>SNS</p></div>
+    <div class="pair">
+      <a class="link c-x" href="https://x.com/puffs______" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span><span class="info"><span class="plat">X</span><span class="lab" style="display:block">@puffs______</span></span><span class="arr">▶</span></a>
+      <a class="link c-ig" href="https://www.instagram.com/puffsleeve_tv/" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></span><span class="info"><span class="plat">INSTAGRAM</span><span class="lab" style="display:block">@puffsleeve_tv</span></span><span class="arr">▶</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <small>© ぱふす。 All rights reserved.</small>
+  </footer>
+</main>
+
+</body>
+</html>
