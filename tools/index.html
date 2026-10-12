@@ -2,66 +2,374 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ぱふす。TOOLS</title>
-<meta name="description" content="ぱふす。が使う配信・動画制作まわりの自作ツール置き場。ぜんぶブラウザだけで動きます。">
-<meta name="theme-color" content="#0a0508">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://puffsleeve.github.io/tools/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>index</title>
 <meta property="og:title" content="ぱふす。TOOLS">
-<meta property="og:description" content="ぱふす。が使う配信・動画制作まわりの自作ツール置き場。ぜんぶブラウザだけで動きます。">
-<meta property="og:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
+<meta property="og:description" content="ぱふす。が使う配信・動画制作まわりのツール置き場">
 <meta property="og:url" content="https://puffsleeve.github.io/tools/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://puffsleeve.github.io/assets/ogp.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/base.css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ぱふす。TOOLS">
+<meta name="twitter:description" content="ぱふす。が使う配信・動画制作まわりのツール置き場">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-  .c-teal { --c: var(--teal); } .c-orange { --c: var(--orange); } .c-red { --c: #ff5a68; }
-  .group .link { align-items: flex-start; padding-block: 14px; }
-  .group .link .lab { white-space: normal; }
-  .group .link .arr { margin-top: 12px; }
+  :root {
+    --red: #ff1a2e;
+    --red-dim: #cc0016;
+    --red-glow: rgba(255,26,46,0.4);
+    --teal: #00e5cc;
+    --teal-glow: rgba(0,229,204,0.3);
+    --orange: #ff7700;
+    --dark: #0a0508;
+    --dark2: #120a0c;
+    --dark3: #1a0d10;
+    --card-bg: rgba(20,8,10,0.85);
+    --text: #f0d0d4;
+    --text-dim: #a07880;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .scanline {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+    pointer-events: none; z-index: 50;
+  }
+  .noise {
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 49; opacity: 0.5;
+  }
+  .bg-blob { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .bg-blob-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,26,46,0.18) 0%, transparent 70%); top: -100px; left: -100px; animation: blobMove1 8s ease-in-out infinite alternate; }
+  .bg-blob-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,229,204,0.12) 0%, transparent 70%); bottom: 100px; right: -50px; animation: blobMove2 10s ease-in-out infinite alternate; }
+  .bg-blob-3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,119,0,0.1) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blobMove3 12s ease-in-out infinite alternate; }
+  @keyframes blobMove1 { to { transform: translate(40px, 60px); } }
+  @keyframes blobMove2 { to { transform: translate(-30px, -40px); } }
+  @keyframes blobMove3 { to { transform: translate(-50px, 30px); } }
+
+  .grid-bg {
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,26,46,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,26,46,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 55;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-link {
+    align-self: flex-start;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--red); }
+
+  .about-link {
+    margin-top: 14px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .about-link:hover { opacity: 1; }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 36px;
+    animation: fadeInDown 0.8s ease both;
+  }
+
+  .name {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-shadow: 0 0 20px var(--red-glow), 0 0 40px rgba(255,26,46,0.2);
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  .name .dot { color: var(--red); }
+
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+  .tag {
+    font-size: 0.65rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border: 1px solid;
+    text-transform: uppercase;
+  }
+  .tag-teal { color: var(--teal); border-color: var(--teal); background: rgba(0,229,204,0.06); }
+  .tag-orange { color: var(--orange); border-color: var(--orange); background: rgba(255,119,0,0.06); }
+
+  .bio {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+    text-align: center;
+    max-width: 340px;
+    letter-spacing: 0.03em;
+  }
+
+  .divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    animation: fadeIn 1s ease 0.4s both;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--red-dim), transparent); }
+  .divider-icon {
+    font-size: 0.65rem; font-family: 'Orbitron', monospace; color: var(--red-dim);
+    letter-spacing: 0.2em; white-space: nowrap;
+  }
+
+  .links { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+  .link-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 18px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,26,46,0.15);
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+    animation: slideInUp 0.6s ease both;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .link-item:nth-child(1) { animation-delay: 0.1s; }
+  .link-item:nth-child(2) { animation-delay: 0.2s; }
+  .link-item:nth-child(3) { animation-delay: 0.3s; }
+  .link-item:nth-child(4) { animation-delay: 0.4s; }
+  .link-item:nth-child(5) { animation-delay: 0.5s; }
+  .link-item:nth-child(6) { animation-delay: 0.6s; }
+
+  .link-item::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  .link-item::after {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--link-color, var(--red));
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+  .link-item:hover {
+    border-color: var(--link-color, var(--red));
+    transform: translateX(4px);
+    box-shadow: 0 0 20px rgba(255,26,46,0.1), inset 0 0 30px rgba(255,26,46,0.03);
+  }
+  .link-item:hover::before { transform: translateX(100%); }
+  .link-item:hover::after { transform: scaleY(1); }
+
+  .link-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    background: rgba(255,26,46,0.08);
+    border: 1px solid rgba(255,26,46,0.2);
+    color: var(--link-color, var(--red));
+    clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .link-item:hover .link-icon { background: rgba(255,26,46,0.15); box-shadow: 0 0 15px var(--red-glow); }
+
+  .link-info { flex: 1; min-width: 0; }
+  .link-platform {
+    font-family: 'Orbitron', monospace; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--link-color, var(--red));
+    margin-bottom: 2px; opacity: 0.8;
+  }
+  .link-label { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.03em; color: #fff; }
+  .link-desc { font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; line-height: 1.5; }
+
+  .link-arrow {
+    font-size: 0.75rem; color: var(--text-dim); flex-shrink: 0;
+    transition: transform 0.3s, color 0.3s; font-family: 'Orbitron', monospace;
+  }
+  .link-item:hover .link-arrow { transform: translateX(4px); color: var(--link-color, var(--red)); }
+
+  .c-shorts { --link-color: var(--teal); }
+  .c-chromakey { --link-color: var(--teal); }
+  .c-frame { --link-color: var(--orange); }
+  .c-lol { --link-color: var(--orange); }
+  .c-valorant { --link-color: var(--orange); }
+  .c-idphoto { --link-color: var(--teal); }
+
+  .footer { margin-top: 40px; text-align: center; animation: fadeIn 1.2s ease 1s both; }
+  .footer-tag { font-family: 'Orbitron', monospace; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--red-dim); text-transform: uppercase; opacity: 0.6; }
+  .copylight { margin-top: 6px; font-family: 'Orbitron', monospace; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--text-dim); opacity: 0.5; }
+
+  .corner-deco { position: fixed; z-index: 200; pointer-events: none; }
+  .corner-deco svg { display: block; }
+  .corner-tl { top: 0; left: 0; }
+  .corner-tr { top: 0; right: 0; transform: scaleX(-1); }
+  .corner-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+  .corner-br { bottom: 0; right: 0; transform: scale(-1); }
+
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--red-dim); }
+
+  @media (max-width: 400px) {
+    .name { font-size: 1.7rem; }
+    .container { padding: 30px 16px 50px; }
+  }
 </style>
 </head>
 <body>
-<div class="grid-bg" aria-hidden="true"></div>
-<div class="glow" aria-hidden="true"></div>
-<div class="scanline" aria-hidden="true"></div>
-<div class="corner c-tl" aria-hidden="true"></div><div class="corner c-tr" aria-hidden="true"></div><div class="corner c-bl" aria-hidden="true"></div><div class="corner c-br" aria-hidden="true"></div>
 
-<main class="wrap">
-  <a class="back" href="../">◀ ぱふす。</a>
+<div class="scanline"></div>
+<div class="noise"></div>
+<div class="grid-bg"></div>
+<div class="bg-blob bg-blob-1"></div>
+<div class="bg-blob bg-blob-2"></div>
+<div class="bg-blob bg-blob-3"></div>
 
-  <header class="phead">
-    <p class="pkicker">WORKS / TOOLS</p>
-    <h1 class="ptitle">ぱふす<span>。</span>TOOLS</h1>
-    <div class="tags">
-      <span class="tag t-teal">配信</span>
-      <span class="tag t-teal">動画制作</span>
-      <span class="tag t-orange">画像制作</span>
+<div class="corner-deco corner-tl"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M0 0 H40 V4 H4 V40 H0 Z" fill="#ff1a2e" opacity="0.5"/><rect x="44" y="0" width="8" height="8" fill="#00e5cc" opacity="0.6"/><rect x="0" y="44" width="8" height="8" fill="#ff7700" opacity="0.6"/></svg></div>
+<div class="corner-deco corner-tr"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M0 0 H40 V4 H4 V40 H0 Z" fill="#ff1a2e" opacity="0.5"/><rect x="44" y="0" width="8" height="8" fill="#00e5cc" opacity="0.6"/><rect x="0" y="44" width="8" height="8" fill="#ff7700" opacity="0.6"/></svg></div>
+<div class="corner-deco corner-bl"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M0 0 H40 V4 H4 V40 H0 Z" fill="#ff1a2e" opacity="0.5"/><rect x="44" y="0" width="8" height="8" fill="#00e5cc" opacity="0.6"/><rect x="0" y="44" width="8" height="8" fill="#ff7700" opacity="0.6"/></svg></div>
+<div class="corner-deco corner-br"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M0 0 H40 V4 H4 V40 H0 Z" fill="#ff1a2e" opacity="0.5"/><rect x="44" y="0" width="8" height="8" fill="#00e5cc" opacity="0.6"/><rect x="0" y="44" width="8" height="8" fill="#ff7700" opacity="0.6"/></svg></div>
+
+<div class="container">
+
+  <a class="back-link" href="../links/">◀ ぱふす。TOPへ戻る</a>
+
+  <div class="header">
+    <div class="name">ぱふす<span class="dot">。</span>TOOLS</div>
+    <div class="tag-row">
+      <span class="tag tag-teal">配信</span>
+      <span class="tag tag-teal">動画制作</span>
+      <span class="tag tag-orange">画像制作</span>
     </div>
-    <p class="lead">配信者モドキが使っている自作ツールをここに置いていきます。<br>ぜんぶブラウザだけで動くので、動画がどこかにアップロードされることはありません。<br>ツールの制作はAIと共同で行っています。</p>
-  </header>
+    <p class="bio">配信者モドキが使っている自作ツールをここに置いていきます。<br>ぜんぶブラウザだけで動くので、動画がどこかにアップロードされることはありません。<br>ツールの制作はAIと共同で行っています。</p>
+    <a class="about-link" href="https://t.co/XtsGAdjsna" target="_blank" rel="noopener">ぱふすについてはこちらから ▶</a>
+  </div>
 
-  <section class="group" aria-labelledby="g-stream">
-    <div class="ghead"><h2 id="g-stream">STREAM</h2><p>配信用</p></div>
-    <a class="link c-red" href="tools-map-mask-LoL.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3l-6 2.2L3 3v15l6 2 6-2.2 6 2.2V5l-6-2zm-1 2.44l2 .73v12.4l-2-.73V5.44zM9 5.56l2 .73v12.4l-2-.73V5.56zM5 5.5l2 .73v12.4L5 18.2V5.5zm14 13l-2-.73V5.36l2 .73V18.5z"/></svg></span><span class="info"><span class="plat">IMAGE TOOL</span><span class="lab" style="display:block">LoLミニマップ隠しジェネレーター</span><span class="desc">LoLのミニマップだけを隠す透過PNGを書き出す（配信用マスク画像）</span></span><span class="arr">▶</span></a>
-    <a class="link c-red" href="tools-map-mask-valorant.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3l-6 2.2L3 3v15l6 2 6-2.2 6 2.2V5l-6-2zm-1 2.44l2 .73v12.4l-2-.73V5.44zM9 5.56l2 .73v12.4l-2-.73V5.56zM5 5.5l2 .73v12.4L5 18.2V5.5zm14 13l-2-.73V5.36l2 .73V18.5z"/></svg></span><span class="info"><span class="plat">IMAGE TOOL</span><span class="lab" style="display:block">VALORANTミニマップ隠しジェネレーター</span><span class="desc">VALORANTのミニマップだけを隠す透過PNGを書き出す（配信用マスク画像）</span></span><span class="arr">▶</span></a>
-  </section>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-icon">◆ TOOLS ◆</span>
+    <div class="divider-line"></div>
+  </div>
 
-  <section class="group" aria-labelledby="g-make">
-    <div class="ghead"><h2 id="g-make">CREATE</h2><p>動画・画像制作</p></div>
-    <a class="link c-teal" href="tools-shorts-vertical.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-5 18a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM7 17V5h10v12H7z"/></svg></span><span class="info"><span class="plat">VIDEO TOOL</span><span class="lab" style="display:block">縦型レイアウト変換ツール</span><span class="desc">横型動画をYouTube Shorts用の9:16に、自由なレイアウトで変換</span></span><span class="arr">▶</span></a>
-    <a class="link c-teal" href="tools-chromakey.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3a7 7 0 0 1 6.32 4H5.68A7 7 0 0 1 12 5zm-7 7c0-.34.03-.67.08-1h13.84c.05.33.08.66.08 1a7 7 0 0 1-.34 2H5.34A7 7 0 0 1 5 12zm2.09 4h9.82A6.98 6.98 0 0 1 12 19a6.98 6.98 0 0 1-4.91-3z"/></svg></span><span class="info"><span class="plat">VIDEO TOOL</span><span class="lab" style="display:block">グリーンバック透過ツール</span><span class="desc">グリーンバック動画から背景を抜いて透明WebMに書き出し</span></span><span class="arr">▶</span></a>
-    <a class="link c-orange" href="tools-frame-generator.html"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3h6v6H9V9z"/></svg></span><span class="info"><span class="plat">IMAGE TOOL</span><span class="lab" style="display:block">フレーム合成ジェネレーター</span><span class="desc">フレーム・イラスト・背景の画像を重ねて1枚のPNGに合成</span></span><span class="arr">▶</span></a>
-  </section>
+  <div class="links">
+    <a class="link-item c-shorts" href="tools-shorts-vertical.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-5 18a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM7 17V5h10v12H7z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Video Tool</div>
+        <div class="link-label">縦型レイアウト変換ツール</div>
+        <div class="link-desc">横型動画をYouTube Shorts用の9:16に、自由なレイアウトで変換</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
+    <a class="link-item c-frame" href="tools-frame-generator.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3h6v6H9V9z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Image Tool</div>
+        <div class="link-label">フレーム合成ジェネレーター</div>
+        <div class="link-desc">フレーム・イラスト・背景の画像を重ねて1枚のPNGに合成</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
 
-  <footer>
-    <small>© ぱふす。 All rights reserved.</small>
-  </footer>
-</main>
+    <a class="link-item c-chromakey" href="tools-chromakey.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3a7 7 0 0 1 6.32 4H5.68A7 7 0 0 1 12 5zm-7 7c0-.34.03-.67.08-1h13.84c.05.33.08.66.08 1a7 7 0 0 1-.34 2H5.34A7 7 0 0 1 5 12zm2.09 4h9.82A6.98 6.98 0 0 1 12 19a6.98 6.98 0 0 1-4.91-3z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Video Tool</div>
+        <div class="link-label">グリーンバック透過ツール</div>
+        <div class="link-desc">グリーンバック動画から背景を抜いて透明WebMに書き出し</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
+    <a class="link-item c-lol" href="tools-map-mask-LoL.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3l-6 2.2L3 3v15l6 2 6-2.2 6 2.2V5l-6-2zm-1 2.44l2 .73v12.4l-2-.73V5.44zM9 5.56l2 .73v12.4l-2-.73V5.56zM5 5.5l2 .73v12.4L5 18.2V5.5zm14 13l-2-.73V5.36l2 .73V18.5z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Image Tool</div>
+        <div class="link-label">Tools map mask LoL</div>
+        <div class="link-desc">LoLのミニマップだけを隠す透過PNGを書き出す（配信用マスク画像）</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
+    <a class="link-item c-valorant" href="tools-map-mask-valorant.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3l-6 2.2L3 3v15l6 2 6-2.2 6 2.2V5l-6-2zm-1 2.44l2 .73v12.4l-2-.73V5.44zM9 5.56l2 .73v12.4l-2-.73V5.56zM5 5.5l2 .73v12.4L5 18.2V5.5zm14 13l-2-.73V5.36l2 .73V18.5z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Image Tool</div>
+        <div class="link-label">Tools map mask VALORANT</div>
+        <div class="link-desc">VALORANTのミニマップだけを隠す透過PNGを書き出す（配信用マスク画像）</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
+    <a class="link-item c-idphoto" href="tools-id-photo.html">
+      <div class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h14V4H5zm7 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-5 11c.6-2.3 2.6-3.8 5-3.8s4.4 1.5 5 3.8H7z"/></svg>
+      </div>
+      <div class="link-info">
+        <div class="link-platform">Image Tool</div>
+        <div class="link-label">証明写真ネップリメーカー</div>
+        <div class="link-desc">好きな画像をガチャの証明写真風の台紙にしてネップリ用に書き出し</div>
+      </div>
+      <span class="link-arrow">▶</span>
+    </a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-tag">◆ ◆ ◆</div>
+    <div class="copylight">© ぱふす。 ALL rights reserved.</div>
+  </div>
+</div>
+
 </body>
 </html>
